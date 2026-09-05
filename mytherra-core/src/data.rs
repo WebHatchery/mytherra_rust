@@ -58,9 +58,7 @@ pub use tiers::{TierDef, TierTable};
 pub use trade::TradeRouteSeed;
 pub use weather::{WeatherIntensity, WeatherPattern};
 
-use macroquad_toolkit::data_loader::{
-    load_embedded_json, load_embedded_json_labeled, DataRegistry,
-};
+use macroquad_toolkit::data_loader::{load_embedded_json_labeled, DataRegistry};
 
 const GAME_CONFIG_JSON: &str =
     macroquad_toolkit::include_json_str!("../../assets/data/game_config.json");
@@ -159,38 +157,48 @@ pub struct GameData {
 impl GameData {
     pub fn load() -> Result<Self, String> {
         let config = load_embedded_json_labeled("game_config", GAME_CONFIG_JSON)?;
-        let regions: Vec<RegionSeed> = load_embedded_json(REGIONS_JSON)?;
+        let regions: Vec<RegionSeed> = load_embedded_json_labeled("regions", REGIONS_JSON)?;
         let region_actions = DataRegistry::from_embedded_json(REGION_ACTIONS_JSON, "id")?;
-        let heroes: Vec<HeroSeed> = load_embedded_json(HEROES_JSON)?;
+        let heroes: Vec<HeroSeed> = load_embedded_json_labeled("heroes", HEROES_JSON)?;
         let hero_names: HeroNameBank = load_embedded_json_labeled("hero_names", HERO_NAMES_JSON)?;
-        let settlements: Vec<SettlementSeed> = load_embedded_json(SETTLEMENTS_JSON)?;
+        let settlements: Vec<SettlementSeed> =
+            load_embedded_json_labeled("settlements", SETTLEMENTS_JSON)?;
         let settlement_names: SettlementNameBank =
             load_embedded_json_labeled("settlement_names", SETTLEMENT_NAMES_JSON)?;
-        let resource_nodes: Vec<ResourceNodeSeed> = load_embedded_json(RESOURCE_NODES_JSON)?;
-        let landmarks: Vec<LandmarkSeed> = load_embedded_json(LANDMARKS_JSON)?;
+        let resource_nodes: Vec<ResourceNodeSeed> =
+            load_embedded_json_labeled("resource_nodes", RESOURCE_NODES_JSON)?;
+        let landmarks: Vec<LandmarkSeed> = load_embedded_json_labeled("landmarks", LANDMARKS_JSON)?;
         let landmark_names: LandmarkNameBank =
             load_embedded_json_labeled("landmark_names", LANDMARK_NAMES_JSON)?;
-        let plague_names: Vec<String> = load_embedded_json(PLAGUE_NAMES_JSON)?;
-        let trade_routes: Vec<TradeRouteSeed> = load_embedded_json(TRADE_ROUTES_JSON)?;
+        let plague_names: Vec<String> =
+            load_embedded_json_labeled("plague_names", PLAGUE_NAMES_JSON)?;
+        let trade_routes: Vec<TradeRouteSeed> =
+            load_embedded_json_labeled("trade_routes", TRADE_ROUTES_JSON)?;
         let building_types = DataRegistry::from_embedded_json(BUILDING_TYPES_JSON, "id")?;
-        let buildings: Vec<BuildingSeed> = load_embedded_json(BUILDINGS_JSON)?;
-        let artifacts: Vec<ArtifactSeed> = load_embedded_json(ARTIFACTS_JSON)?;
-        let weather_patterns: Vec<WeatherPattern> = load_embedded_json(WEATHER_PATTERNS_JSON)?;
+        let buildings: Vec<BuildingSeed> = load_embedded_json_labeled("buildings", BUILDINGS_JSON)?;
+        let artifacts: Vec<ArtifactSeed> = load_embedded_json_labeled("artifacts", ARTIFACTS_JSON)?;
+        let weather_patterns: Vec<WeatherPattern> =
+            load_embedded_json_labeled("weather_patterns", WEATHER_PATTERNS_JSON)?;
         let weather_intensities: Vec<WeatherIntensity> =
-            load_embedded_json(WEATHER_INTENSITIES_JSON)?;
-        let magic_paths: Vec<MagicPathSeed> = load_embedded_json(MAGIC_PATHS_JSON)?;
-        let monster_types: Vec<MonsterType> = load_embedded_json(MONSTER_TYPES_JSON)?;
-        let myth_themes: Vec<MythTheme> = load_embedded_json(MYTH_THEMES_JSON)?;
-        let agendas: Vec<Agenda> = load_embedded_json(AGENDAS_JSON)?;
-        let pantheon: Vec<DeitySeed> = load_embedded_json(PANTHEON_JSON)?;
+            load_embedded_json_labeled("weather_intensities", WEATHER_INTENSITIES_JSON)?;
+        let magic_paths: Vec<MagicPathSeed> =
+            load_embedded_json_labeled("magic_paths", MAGIC_PATHS_JSON)?;
+        let monster_types: Vec<MonsterType> =
+            load_embedded_json_labeled("monster_types", MONSTER_TYPES_JSON)?;
+        let myth_themes: Vec<MythTheme> =
+            load_embedded_json_labeled("myth_themes", MYTH_THEMES_JSON)?;
+        let agendas: Vec<Agenda> = load_embedded_json_labeled("agendas", AGENDAS_JSON)?;
+        let pantheon: Vec<DeitySeed> = load_embedded_json_labeled("pantheon", PANTHEON_JSON)?;
         let era_names: EraNameBank = load_embedded_json_labeled("era_names", ERA_NAMES_JSON)?;
-        let bet_types: Vec<BetType> = load_embedded_json(BET_TYPES_JSON)?;
-        let confidence_levels: Vec<ConfidenceLevel> = load_embedded_json(CONFIDENCE_JSON)?;
-        let timeframes: Vec<TimeframeModifier> = load_embedded_json(TIMEFRAMES_JSON)?;
+        let bet_types: Vec<BetType> = load_embedded_json_labeled("bet_types", BET_TYPES_JSON)?;
+        let confidence_levels: Vec<ConfidenceLevel> =
+            load_embedded_json_labeled("confidence", CONFIDENCE_JSON)?;
+        let timeframes: Vec<TimeframeModifier> =
+            load_embedded_json_labeled("timeframes", TIMEFRAMES_JSON)?;
         let balance: Balance = load_embedded_json_labeled("balance", BALANCE_JSON)?;
         let strings: Strings = load_embedded_json_labeled("strings", STRINGS_JSON)?;
         let achievements: Vec<macroquad_toolkit::achievements::Achievement> =
-            load_embedded_json(ACHIEVEMENTS_JSON)?;
+            load_embedded_json_labeled("achievements", ACHIEVEMENTS_JSON)?;
         let tiers: TierTable = load_embedded_json_labeled("tiers", TIERS_JSON)?;
 
         if regions.is_empty() {
