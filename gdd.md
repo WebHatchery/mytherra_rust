@@ -7,7 +7,7 @@
 > what the world will do next. Everyone sees the same world. Everyone's bets are their
 > own.
 
-Sources: `game_apps/mytherra/` (React/PHP original), `RustGames/migration_candidates.md`,
+Sources: `game_apps/mytherra/` (React/PHP original),
 `RustGames/standing.md`, `RustGames/docs/GAME_DEVELOPMENT_GUIDE.md`,
 `RustGames/docs/CODE_STANDARDS.md`, `RustGames/docs/MACROQUAD_TOOLKIT.md`,
 `RustGames/kaiju_sim/kaiju_server/` (the catalog's one precedent for a Rust-side server
@@ -24,10 +24,10 @@ component).
   "divine tool" subsystems (Artifacts, Weather, Omens, Magic, Myths, Civilization,
   Pantheon), and a 100-year era/legacy system. This is the largest and most mechanically
   complete of the three web games this catalog has scoped for a Rust port so far.
-- **Why it was picked:** `migration_candidates.md`'s explicit top pick — "the cleanest
-  genre gap, the fantasy (watch a world, nudge it, no direct control) is inherently about
-  simulation depth over spectacle, and it plays straight to what an AI-driven,
-  artist-light dev process is actually good at."
+- **Why it was picked:** Watching and nudging a world without direct control
+  filled a simulation genre gap when this port was selected. The fantasy
+  depends on simulation depth and readable data, keeping the initial artwork
+  requirements manageable.
 - **The multiplayer decision.** Unlike `stellar_legacy` and `dragons_den` (both scoped as
   standalone local-save single-player ports), this project is being scoped **as a live,
   shared-world multiplayer game from the start** — one persistent world, all players
